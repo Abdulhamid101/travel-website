@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css"/>
+  </head>
+  <body>
+    <nav>
+      <div class="header_logo">
+        <h2>Travling!</h2>
+      </div>
+      <div class="nav_content">
+        <ul>
+          <li><a href="#">Product</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">About Us</a></li>
+        </ul>
+        <div class="nav_btn">
+          <button><a href="">Sign Up</a></button>
+        </div>
+      </div>
+      <!-- <div class="nav_btn">
+        <button><a href="">Sign Up</a></button>
+      </div> -->
+      <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+    </nav>
+    <aside id="sidebar" class="sidebar">
+      <a href="#">Home</a>
+      <a href="#">Destinations</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+
+      <div class="nav_btn">
+        <button><a href="">Sign Up</a></button>
+      </div>
+    </aside>
+    <section class="first_section">
+      <div class="left">
+        <h1>Start your journey by one, explore beautiful world!</h1>
+        <p>
+          Plan and book your perfect trip with expert advice and travel trips,
+          destination information and inspiration from us!
+        </p>
+      </div>
+      <div class="right">
+        <!-- <img src="images/first image.jpeg" alt="" />
+        <div class="smaller_image">
+          <img src="images/first image 2.jpeg" alt="" />
+        </div>
+        <div class="smaller_image2">
+          <img src="images/first image 3.jpeg" alt="" />
+        </div> -->
+        <img src="images/illus (1).png" alt="" />
+      </div>
+    </section>
+    <section class="second_section">
+      <h4>Population Destination</h4>
+      <p>Vaction to make your experience enjoyable in indonesia</p>
+      <div class="row_container">
+        <div class="row_items">
+          <div class="image_item">
+            <img src="images/row1.png" alt="" />
+          </div>
+          <div class="row_text">
+            <small>Lorem, ipsum dolor.</small>
+            <p>Lorem ipsum dolor sit.</p>
+            <span>3 Days</span>
+          </div>
+        </div>
+        <div class="row_items">
+          <div class="image_item">
+            <img src="images/row2.png" alt="" />
+          </div>
+          <div class="row_text">
+            <small>Lorem, ipsum dolor.</small>
+            <p>Lorem ipsum dolor sit.</p>
+            <span>3 Days</span>
+          </div>
+        </div>
+        <div class="row_items">
+          <div class="image_item">
+            <img src="images/row3.png" alt="" />
+          </div>
+          <div class="row_text">
+            <small>Lorem, ipsum dolor.</small>
+            <p>Lorem ipsum dolor sit.</p>
+            <span>3 Days</span>
+          </div>
+        </div>
+        <div class="row_items">
+          <div class="image_item">
+            <img src="images/row4.png" alt="" />
+          </div>
+          <div class="row_text">
+            <small>Lorem, ipsum dolor.</small>
+            <p>Lorem ipsum dolor sit.</p>
+            <span>3 Days</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="third_section">
+      <div class="left">
+        <img src="images/section three img.png" alt="" />
+      </div>
+      <div class="right">
+        <h2>Why choose us</h2>
+        <p>
+          Enjoy different experiences in every place you visit and discover new
+          and affordable adventure of course
+        </p>
+        <div class="right_card">
+          <h4>Flight Ticket</h4>
+          <p>Vitae donec pelientesque a aliquam et ultrcies auctor</p>
+        </div>
+        <div class="right_card">
+          <h4>Accomodation</h4>
+          <p>Vitae donec pelientesque a aliquam et ultrcies auctor</p>
+        </div>
+        <div class="right_card">
+          <h4>Packaged Tour</h4>
+          <p>Vitae donec pelientesque a aliquam et ultrcies auctor</p>
+        </div>
+      </div>
+    </section>
+    <section class="fourth_section">
+      <div class="fourth_section_top">
+        <h2>Plan Your Vaction!</h2>
+        <p>
+          For many people organising a trip is an heaache. register to be able
+          to jointly determine vaction destination and dates
+        </p>
+      </div>
+      <div class="fourth_image">
+        <img src="images/section four img.png" alt="" />
+      </div>
+    </section>
+    <footer class="flight-footer">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h2>Travling!</h2>
+          <p>
+            Your gateway to the skies. Book flights, track trips, and explore
+            the world with ease.
+          </p>
+        </div>
+        <div class="footer-links">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#">Destinations</a></li>
+            <li><a href="#">Book a Flight</a></li>
+            <li><a href="#">Flight Status</a></li>
+            <li><a href="#">Travel Guides</a></li>
+          </ul>
+        </div>
+        <div class="footer-signin">
+          <h4>welcome</h4>
+          <form>
+            <input type="email" placeholder="Email" required />
+            <input type="password" placeholder="Password" required />
+            <button type="submit">Sign In</button>
+            <button ype="submit">Sign up</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Bottom -->
+      <div class="footer-bottom">
+        <p>&copy; 2025 SkyTravel. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      const sidebar = document.getElementById("sidebar");
+      const mainContent = document.getElementById("mainContent");
+      const sidebarToggle = document.getElementById("sidebarToggle");
+
+      sidebarToggle.addEventListener("click", () => {
+        sidebar.classList.toggle("open");
+        // mainContent.classList.toggle("shifted");
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
+          sidebar.classList.remove("open");
+          // mainContent.classList.remove("shifted");
+        }
+      });
+    </script>
+  </body>
+</html>
