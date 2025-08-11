@@ -182,10 +182,12 @@ section {
 
 .second_section .row_container .row_items {
   background-color: #f4f7f7;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   padding: 0.5rem;
-  cursor: pointer; /* feels clickable */
+  cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+
 }
 
 .second_section .row_container .row_items:hover {

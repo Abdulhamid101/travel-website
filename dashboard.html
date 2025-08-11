@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css"/>
+</head>
+<body>
+  <div class="dashboard-container">
+    <h2 id="welcome"></h2>
+    <form id="flightForm">
+      <div class="form-group" style="position:relative;">
+        <label for="countrySearch">Destination Country</label>
+        <input type="text" id="countrySearch" placeholder="Type a country..." autocomplete="off" />
+        <div id="countryResults" class="dropdown-list"></div>
+      </div>
+      <div class="form-group">
+        <label for="ticketPlan">Ticket Plan</label>
+        <select id="ticketPlan" required>
+          <option value="">Select a plan</option>
+          <option value="Economy">Economy</option>
+          <option value="Business">Business</option>
+          <option value="First Class">First Class</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input type="text" id="price" readonly />
+      </div>
+      <button type="submit" class="btn">Book Flight</button>
+    </form>
+
+    <div class="booked-flights">
+      <h3>Your Booked Flights</h3>
+      <ul id="flightsList"></ul>
+    </div>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+  
+    const user = JSON.parse(localStorage.getItem("signupData"));
+    if (!user) {
+      window.location.href = "signuppage.html";
+    } else {
+      document.getElementById("welcome").textContent = `Hello, ${user.fullname}!`;
+    }
+
+    const prices = {
+      "Economy": "$200",
+      "Business": "$500",
+      "First Class": "$1000"
+    };
+
+    const ticketPlan = document.getElementById("ticketPlan");
+    const priceInput = document.getElementById("price");
+    ticketPlan.addEventListener("change", function() {
+      priceInput.value = prices[ticketPlan.value] || "";
+    });
+
+    // Destination search from API
+    const searchInput = document.getElementById("countrySearch");
+    const resultBox = document.getElementById("countryResults");
+    searchInput.addEventListener("input", async function () {
+      const query = searchInput.value.trim();
+      resultBox.innerHTML = "";
+      if (query.length < 1) return;
+      try {
+        const res = await fetch(`https://restcountries.com/v3.1/name/${query}`);
+        const data = await res.json();
+        if (Array.isArray(data)) {
+          data.forEach((country) => {
+            const div = document.createElement("div");
+            div.textContent = country.name.common;
+            div.onclick = () => {
+              searchInput.value = country.name.common;
+              resultBox.innerHTML = "";
+            };
+            resultBox.appendChild(div);
+          });
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    });
+
+    const flightForm = document.getElementById("flightForm");
+    const flightsList = document.getElementById("flightsList");
+
+    function loadFlights() {
+      const flights = JSON.parse(localStorage.getItem("bookedFlights")) || [];
+      flightsList.innerHTML = "";
+      flights.forEach((flight, idx) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <span>
+            <strong>${flight.destination}</strong> - ${flight.plan} (${flight.price})
+          </span>
+          <button onclick="removeFlight(${idx})" style="background:#d84315;color:#fff;border:none;padding:0.3rem 0.7rem;border-radius:4px;cursor:pointer;">Delete</button>
+        `;
+        flightsList.appendChild(li);
+      });
+    }
+
+    flightForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const destination = searchInput.value.trim();
+      const plan = ticketPlan.value;
+      const price = priceInput.value;
+      if (!destination || !plan || !price) {
+        alert("Please fill all fields.");
+        return;
+      }
+      const flights = JSON.parse(localStorage.getItem("bookedFlights")) || [];
+      flights.push({ destination, plan, price });
+      localStorage.setItem("bookedFlights", JSON.stringify(flights));
+      loadFlights();
+      flightForm.reset();
+      priceInput.value = "";
+    });
+
+    window.removeFlight = function(idx) {
+      const flights = JSON.parse(localStorage.getItem("bookedFlights")) || [];
+      flights.splice(idx, 1);
+      localStorage.setItem("bookedFlights", JSON.stringify(flights));
+      loadFlights();
+    };
+
+    function logout() {
+      localStorage.removeItem("signupData");
+      localStorage.removeItem("bookedFlights");
+      window.location.href = "index.html";
+    }
+
+    // Initial load
+    loadFlights();
+  </script>
+</body>
+</html>
