@@ -414,7 +414,7 @@ section {
   border-top: 1px solid #81d4fa;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   body {
     padding: 1rem;
   }
