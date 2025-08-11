@@ -22,15 +22,19 @@
         .getElementById("loginForm")
         .addEventListener("submit", function (e) {
           e.preventDefault();
-
+          const savedData = JSON.parse(localStorage.getItem("signupData"));
           const email = document.getElementById("email").value;
           const password = document.getElementById("password").value;
-          if (email === "Kafidipe@gmail.com" && password === "1234") {
-            localStorage.setItem("isLoggedIn", "true");
-            alert("login successful");
+          console.log(savedData);
+          if (
+            savedData &&
+            email === savedData.email &&
+            password === savedData.password
+          ) {
+            alert("Login successful!");
             window.location.href = "index.html";
           } else {
-            alert("Invalid email or password");
+            alert("Invalid email or password.");
           }
         });
     </script>
