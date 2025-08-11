@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
-    <script>
-      if (localStorage.getItem("isLoggedIn") !== "true") {
-        window.location.href = "loginpage.html";
-      }
-    </script>
   </head>
   <body>
     <nav>
@@ -23,12 +18,12 @@
           <li><a href="#">About Us</a></li>
         </ul>
         <div class="nav_btn">
-          <button><a href="">Sign Up</a></button>
+          <button><a href="loginpage.html">Sign in</a></button>
+          <div class="nav_btn2">
+            <button><a href="signuppage.html">sign up </a></button>
+          </div>
         </div>
       </div>
-      <!-- <div class="nav_btn">
-        <button><a href="">Sign Up</a></button>
-      </div> -->
       <button class="sidebar-toggle" id="sidebarToggle">☰</button>
     </nav>
     <aside id="sidebar" class="sidebar">
@@ -38,7 +33,7 @@
       <a href="#">Contact</a>
 
       <div class="nav_btn">
-        <button><a href="">Sign Up</a></button>
+        <button><a href="">Sign in</a></button>
       </div>
     </aside>
     <section class="first_section">
@@ -178,11 +173,6 @@
     </footer>
 
     <script>
-      function logout() {
-        localStorage.removeItem("isLoggedIn");
-        window.location.href = "loginpage.html";
-      }
-
       const sidebar = document.getElementById("sidebar");
       const mainContent = document.getElementById("mainContent");
       const sidebarToggle = document.getElementById("sidebarToggle");
